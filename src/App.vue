@@ -1,28 +1,36 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <condition-relation
+    :conditions="conditions"
+    :options="{ keyOptions, relationOptions, valueInputs }"
+  />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ConditionRelation from './components/ConditionRelation/index'
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
-    HelloWorld
+    ConditionRelation
+  },
+  data () {
+    return {
+      keyOptions: [],
+      relationOptions: {},
+      valueInputs: {},
+
+      conditions: {
+        group: [{
+          group: [{
+            describe: '',
+            relation: '',
+            value: ''
+          }],
+          relation: 'and'
+        }],
+        relation: 'and'
+      }
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
