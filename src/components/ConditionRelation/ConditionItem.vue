@@ -2,7 +2,7 @@
   <div class="condition-item">
     <el-select
       :value="describe"
-      placeholder="请选择"
+      placeholder="请选择条件"
       filterable
       @change="value => change('describe', value)"
     >
@@ -16,7 +16,7 @@
 
     <el-select
       :value="relation"
-      placeholder="请选择"
+      placeholder="请选择关系"
       @change="value => change('relation', value)"
     >
       <el-option
@@ -74,8 +74,8 @@
       <!-- 数值比较 -->
       <el-input
         v-else-if="valueInput.type === 3"
-        type="number"
         :value="value"
+        type="number"
         style="width: 180px;"
         placeholder="请输入数值"
         @change="value => change('value', value.toString())"
@@ -103,6 +103,16 @@
       />
       <!-- /时间段 -->
 
+      <!-- 级联 -->
+      <el-cascader
+        v-else-if="valueInput.type === 6"
+        :options="valueInput.options"
+        :value="value.length ? JSON.parse(value) : []"
+        change-on-select
+        @change="value => change('value', JSON.stringify(value))"
+      />
+      <!-- /级联 -->
+
     </template>
 
     <el-button
@@ -115,16 +125,7 @@
 </template>
 
 <script>
-import { Button, Select, Option, Input, DatePicker } from 'element-ui'
-
 export default {
-  components: {
-    [Button.name]: Button,
-    [Select.name]: Select,
-    [Input.name]: Input,
-    [Option.name]: Option,
-    [DatePicker.name]: DatePicker
-  },
   props: {
     options: {
       type: Object,
@@ -150,7 +151,7 @@ export default {
     },
     valueInput () {
       const describe = this.describe
-      return describe !== '' ? this.options.valueInputs[describe] : {
+      return describe !== '' && this.options.valueInputs[describe] !== undefined ? this.options.valueInputs[describe] : {
         type: 1,
         options: []
       }

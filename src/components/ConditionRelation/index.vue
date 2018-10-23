@@ -46,17 +46,13 @@
 </template>
 
 <script>
-import 'element-ui/lib/theme-chalk/index.css'
-
 import RelationSide from './RelationSide'
 import ConditionItem from './ConditionItem'
-import { Button } from 'element-ui'
 
 export default {
   components: {
     ConditionItem,
-    RelationSide,
-    [Button.name]: Button
+    RelationSide
   },
   props: {
     options: {
@@ -111,9 +107,9 @@ export default {
     },
     deleteItem (i, j) {
       this.conditions.group[i].group.splice(j, 1)
-      this.checkClearGroup(i)
+      this.checkClearGroup(i, j)
     },
-    checkClearGroup (i) {
+    checkClearGroup (i, j) {
       if (this.conditions.group[i].group.length === 0) {
         this.conditions.group.splice(i, 1)
       }

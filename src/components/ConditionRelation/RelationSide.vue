@@ -10,12 +10,7 @@
 </template>
 
 <script>
-import { Button } from 'element-ui'
-
 export default {
-  components: {
-    [Button.name]: Button
-  },
   props: {
     relation: {
       type: String,
@@ -31,20 +26,20 @@ export default {
 </script>
 
 <style lang="css" scoped>
-  .condition-relation {
-    margin-right: 5px;
-    background:linear-gradient(0deg,#d2d4d4 100%,#d2d4d4 100%);
-    background-size: 3px;
-    background-repeat: no-repeat;
-    background-position: center;
+.condition-relation {
+  margin-right: 5px;
+  background:linear-gradient(0deg,#d2d4d4 100%,#d2d4d4 100%);
+  background-size: 3px;
+  background-repeat: no-repeat;
+  background-position: center;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-  .condition-btn {
-    color: #409eff;
-    padding: 7px;
-  }
+.condition-btn {
+  color: #409eff;
+  padding: 7px;
+}
 </style>
